@@ -1,0 +1,21 @@
+{
+    "name": "ddd-by-examples/library-php",
+    "type": "project",
+    "description": "A comprehensive Domain-Driven Design example with problem space strategic analysis and various tactical patterns wirtten in PHP.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arkadiusz Kondas",
+            "email": "arkadiusz.kondas@gmail.com"
+        }
+    ],
+    "require": {
+        "myclabs/php-enum": "^1.7",
+        "ramsey/uuid": "^3.8"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.15",
+        "phpunit/phpunit": "^8.4",
+        "vimeo/psalm": "^3.6"
+    }
+}
