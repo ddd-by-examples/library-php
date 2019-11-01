@@ -11,11 +11,40 @@
     ],
     "require": {
         "myclabs/php-enum": "^1.7",
-        "ramsey/uuid": "^3.8"
+        "ramsey/uuid": "^3.8",
+        "akondas/munus": "dev-master#d2f172c6f603486fa68b618bc282ad6cb369c535"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
         "phpunit/phpunit": "^8.4",
-        "vimeo/psalm": "^3.6"
+        "vimeo/psalm": "^3.6",
+        "psalm/plugin-phpunit": "^0.7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Akondas\\Library\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Akondas\\Library\\Tests\\": "tests/"
+        },
+        "files": [
+            "tests/Fixture/Fixtures.php"
+        ]
+    },
+    "scripts": {
+        "check-cs": [
+            "php-cs-fixer fix --dry-run --diff"
+        ],
+        "fix-cs": [
+            "php-cs-fixer fix"
+        ],
+        "tests": [
+            "@check-cs",
+            "psalm",
+            "phpunit"
+        ]
     }
+
 }
