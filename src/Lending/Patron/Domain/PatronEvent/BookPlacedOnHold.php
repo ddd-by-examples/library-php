@@ -80,6 +80,21 @@ final class BookPlacedOnHold implements PatronEvent
         );
     }
 
+    public function bookId(): BookId
+    {
+        return $this->bookId;
+    }
+
+    public function holdFrom(): \DateTimeImmutable
+    {
+        return $this->holdFrom;
+    }
+
+    public function holdTill(): ?\DateTimeImmutable
+    {
+        return $this->holdTill;
+    }
+
     public function patronId(): PatronId
     {
         return $this->patronId;

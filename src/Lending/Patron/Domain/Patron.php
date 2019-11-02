@@ -7,7 +7,12 @@ namespace Akondas\Library\Lending\Patron\Domain;
 use Akondas\Library\Lending\Book\Domain\AvailableBook;
 use Akondas\Library\Lending\Patron\Domain\PatronEvent\BookHoldFailed;
 use Akondas\Library\Lending\Patron\Domain\PatronEvent\BookPlacedOnHold;
+use Akondas\Library\Lending\Patron\Domain\PlacingOnHoldPolicy\Rejection;
+use Munus\Collection\Lisт;
 use Munus\Control\Either;
+use Munus\Control\Either\Left;
+use Munus\Control\Either\Right;
+use Munus\Control\Option;
 
 final class Patron
 {
@@ -16,9 +21,20 @@ final class Patron
      */
     private $patron;
 
-    public function __construct(PatronInformation $patron)
+    /**
+     * @var Lisт<PlacingOnHoldPolicy>
+     */
+    private $placingOnHoldPolicies;
+
+    public function __construct(PatronInformation $patron, Lisт $placingOnHoldPolicies)
     {
         $this->patron = $patron;
+        $this->placingOnHoldPolicies = $placingOnHoldPolicies;
+    }
+
+    public function isRegular(): bool
+    {
+        return $this->patron->isRegular();
     }
 
     /**
@@ -26,10 +42,24 @@ final class Patron
      */
     public function placeOnHold(AvailableBook $aBook, HoldDuration $holdDuration): Either
     {
-        if ($aBook->isRestricted() && $this->patron->isRegular()) {
-            return new Either\Left(BookHoldFailed::now($this->patron->patronId(), 'Restricted book', $aBook->bookId(), $aBook->libraryBranch(), $holdDuration));
+        $rejection = $this->patronCanHold($aBook, $holdDuration);
+        if ($rejection->isEmpty()) {
+            return new Right(BookPlacedOnHold::now($this->patron->patronId(), $aBook->bookId(), $aBook->bookType(), $aBook->libraryBranch(), $holdDuration));
         }
 
-        return new Either\Right(BookPlacedOnHold::now($this->patron->patronId(), $aBook->bookId(), $aBook->bookType(), $aBook->libraryBranch(), $holdDuration));
+        return new Left(BookHoldFailed::now($this->patron->patronId(), $rejection->get()->reason(), $aBook->bookId(), $aBook->libraryBranch(), $holdDuration));
+    }
+
+    /**
+     * @return Option<Rejection>
+     */
+    private function patronCanHold(AvailableBook $aBook, HoldDuration $holdDuration): Option
+    {
+        return $this->placingOnHoldPolicies
+            ->toStream()
+            ->map(function (PlacingOnHoldPolicy $policy) use ($aBook, $holdDuration): Either {return $policy($aBook, $this, $holdDuration); })
+            ->find(function (Either $either): bool {return $either->isLeft(); })
+            ->map(function (Either $either) {return $either->getLeft(); })
+        ;
     }
 }

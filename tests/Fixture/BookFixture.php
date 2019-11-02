@@ -14,6 +14,11 @@ function restrictedBook(): AvailableBook
     return new AvailableBook(anyBookId(), BookType::restricted(), anyBranch(), Version::zero());
 }
 
+function circulatingBook(): AvailableBook
+{
+    return new AvailableBook(anyBookId(), BookType::circulating(), anyBranch(), Version::zero());
+}
+
 function anyBookId(): BookId
 {
     return new BookId(UUID::random());

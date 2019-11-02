@@ -7,8 +7,8 @@ namespace Akondas\Library\Catalogue;
 use MyCLabs\Enum\Enum;
 
 /**
- * @method static self restricted()
- * @method static self circulating()
+ * @method static BookType restricted()
+ * @method static BookType circulating()
  */
 final class BookType extends Enum
 {
