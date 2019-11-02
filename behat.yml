@@ -1,0 +1,7 @@
+default:
+  formatters:
+    progress: true
+  suites:
+    domain_features:
+      paths:    [ "%paths.base%/features" ]
+      contexts: [ "Akondas\\Library\\Tests\\Context\\DomainContext" ]
