@@ -12,7 +12,7 @@
     "require": {
         "myclabs/php-enum": "^1.7",
         "ramsey/uuid": "^3.8",
-        "munusphp/munus": "dev-master#0c3fcff0f37d2820e270c95065c15b08d700d276"
+        "munusphp/munus": "dev-master#8e4c32ec9aec13f34ee82484b8b936f241b7cfd6"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",

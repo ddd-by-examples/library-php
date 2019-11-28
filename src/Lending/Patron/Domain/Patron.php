@@ -8,7 +8,7 @@ use Akondas\Library\Lending\Book\Domain\AvailableBook;
 use Akondas\Library\Lending\Patron\Domain\PatronEvent\BookHoldFailed;
 use Akondas\Library\Lending\Patron\Domain\PatronEvent\BookPlacedOnHold;
 use Akondas\Library\Lending\Patron\Domain\PlacingOnHoldPolicy\Rejection;
-use Munus\Collection\Lisт;
+use Munus\Collection\GenericList;
 use Munus\Control\Either;
 use Munus\Control\Either\Left;
 use Munus\Control\Either\Right;
@@ -22,11 +22,11 @@ final class Patron
     private $patron;
 
     /**
-     * @var Lisт<PlacingOnHoldPolicy>
+     * @var GenericList<PlacingOnHoldPolicy>
      */
     private $placingOnHoldPolicies;
 
-    public function __construct(PatronInformation $patron, Lisт $placingOnHoldPolicies)
+    public function __construct(PatronInformation $patron, GenericList $placingOnHoldPolicies)
     {
         $this->patron = $patron;
         $this->placingOnHoldPolicies = $placingOnHoldPolicies;

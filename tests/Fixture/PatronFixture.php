@@ -10,13 +10,13 @@ use Akondas\Library\Lending\Patron\Domain\PatronType;
 use Akondas\Library\Lending\Patron\Domain\PlacingOnHoldPolicy;
 use Akondas\Library\Lending\Patron\Domain\PlacingOnHoldPolicy\OnlyResearcherPatronsCanHoldRestrictedBooks;
 use Akondas\Library\Lending\Patron\Domain\PlacingOnHoldPolicy\OnlyResearcherPatronsCanPlaceOpenEndedHolds;
-use Munus\Collection\Lisт;
+use Munus\Collection\GenericList;
 
 function regularPatron(): Patron
 {
     return new Patron(
         new PatronInformation(anyPatronId(), PatronType::regular()),
-        Lisт::of(
+        GenericList::of(
             new OnlyResearcherPatronsCanPlaceOpenEndedHolds(),
             new OnlyResearcherPatronsCanHoldRestrictedBooks()
         )
@@ -32,7 +32,7 @@ function patronWithPolicy(PatronId $patronId, PatronType $patronType, PlacingOnH
 {
     return new Patron(
         new PatronInformation($patronId, $patronType),
-        Lisт::of($placingOnHoldPolicy)
+        GenericList::of($placingOnHoldPolicy)
     );
 }
 
