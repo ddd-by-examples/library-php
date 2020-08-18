@@ -1,0 +1,24 @@
+- pipeline: "build and test"
+  trigger_mode: "ON_EVERY_PUSH"
+  ref_name: "*"
+  ref_type: "WILDCARD"
+  fail_on_prepare_env_warning: true
+  trigger_condition: "ALWAYS"
+  actions:
+    - action: "Execute: composer tests"
+      type: "BUILD"
+      working_directory: "/buddy/library-php"
+      docker_image_name: "library/php"
+      docker_image_tag: "7.4.9"
+      execute_commands:
+        - "composer validate"
+        - "composer install"
+        - "composer tests"
+      setup_commands:
+        - "echo \"memory_limit=-1\" >> /usr/local/etc/php/conf.d/buddy.ini"
+        - "apt-get update && apt-get install -y git zip"
+        - "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer"
+      volume_mappings:
+        - "/:/buddy/library-php"
+      trigger_condition: "ALWAYS"
+      shell: "BASH"
