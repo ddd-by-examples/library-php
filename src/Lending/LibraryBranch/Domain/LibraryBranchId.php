@@ -8,10 +8,7 @@ use Akondas\Library\Common\UUID;
 
 final class LibraryBranchId
 {
-    /**
-     * @var UUID
-     */
-    private $libraryBranchId;
+    private UUID $libraryBranchId;
 
     public function __construct(UUID $libraryBranchId)
     {

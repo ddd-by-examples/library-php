@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "php": ">=7.4",
         "myclabs/php-enum": "^1.7",
         "ramsey/uuid": "^3.8",
         "munusphp/munus": "^0.2"

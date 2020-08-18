@@ -11,25 +11,10 @@ use Akondas\Library\Lending\LibraryBranch\Domain\LibraryBranchId;
 
 final class AvailableBook implements Book
 {
-    /**
-     * @var BookId
-     */
-    private $bookId;
-
-    /**
-     * @var BookType
-     */
-    private $bookType;
-
-    /**
-     * @var LibraryBranchId
-     */
-    private $libraryBranch;
-
-    /**
-     * @var Version
-     */
-    private $version;
+    private BookId $bookId;
+    private BookType $bookType;
+    private LibraryBranchId $libraryBranch;
+    private Version $version;
 
     public function __construct(BookId $bookId, BookType $bookType, LibraryBranchId $libraryBranch, Version $version)
     {

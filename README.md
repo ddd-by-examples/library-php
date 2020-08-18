@@ -1,6 +1,7 @@
 # Library (PHP)
 
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg)](https://php.net/)
+[![buddy pipeline](https://app.buddy.works/akondas/library-php/pipelines/pipeline/274584/badge.svg?token=bfd952ec0cee0cb4db84dbd50ded487354ee6c9f37a7034f7c46425fed70dea7 "buddy pipeline")](https://app.buddy.works/akondas/library-php/pipelines/pipeline/274584)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/)
 ![GitHub](https://img.shields.io/github/license/ddd-by-examples/library-php)
 
 **The project is currently under development. Some solutions are temporary and may change.**

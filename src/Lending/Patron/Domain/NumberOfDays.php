@@ -6,10 +6,7 @@ namespace Akondas\Library\Lending\Patron\Domain;
 
 final class NumberOfDays
 {
-    /**
-     * @var int
-     */
-    private $days;
+    private int $days;
 
     private function __construct(int $days)
     {

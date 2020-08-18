@@ -14,45 +14,14 @@ use Akondas\Library\Lending\Patron\Domain\PatronId;
 
 final class BookPlacedOnHold implements PatronEvent
 {
-    /**
-     * @var UUID
-     */
-    private $eventId;
-
-    /**
-     * @var PatronId
-     */
-    private $patronId;
-
-    /**
-     * @var BookId
-     */
-    private $bookId;
-
-    /**
-     * @var BookType
-     */
-    private $bookType;
-
-    /**
-     * @var LibraryBranchId
-     */
-    private $libraryBranchId;
-
-    /**
-     * @var \DateTimeImmutable
-     */
-    private $holdFrom;
-
-    /**
-     * @var \DateTimeImmutable|null
-     */
-    private $holdTill;
-
-    /**
-     * @var \DateTimeImmutable
-     */
-    private $when;
+    private UUID $eventId;
+    private PatronId $patronId;
+    private BookId $bookId;
+    private BookType $bookType;
+    private LibraryBranchId $libraryBranchId;
+    private \DateTimeImmutable $holdFrom;
+    private ?\DateTimeImmutable $holdTill;
+    private \DateTimeImmutable $when;
 
     private function __construct(UUID $eventId, PatronId $patronId, BookId $bookId, BookType $bookType, LibraryBranchId $libraryBranchId, \DateTimeImmutable $when, \DateTimeImmutable $holdFrom, ?\DateTimeImmutable $holdTill)
     {
