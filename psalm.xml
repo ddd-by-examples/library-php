@@ -2,6 +2,7 @@
 <psalm
         totallyTyped="true"
         resolveFromConfigFile="true"
+        errorBaseline="baseline.xml"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="https://getpsalm.org/schema/config"
         xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
@@ -45,7 +46,7 @@
         <RedundantCondition errorLevel="error"/>
 
         <DocblockTypeContradiction errorLevel="error"/>
-        <RedundantConditionGivenDocblockType errorLevel="error"/>
+        <RedundantConditionGivenDocblockType errorLevel="info"/>
 
         <UnresolvableInclude errorLevel="error"/>
 
@@ -58,7 +59,7 @@
         <MoreSpecificReturnType errorLevel="error"/>
         <LessSpecificReturnStatement errorLevel="error"/>
         <TypeCoercion errorLevel="error"/>
-        <MixedReturnTypeCoercion errorLevel="error" />
+        <MixedReturnTypeCoercion errorLevel="info" />
 
         <PossiblyFalseArgument errorLevel="error"/>
         <PossiblyFalseIterator errorLevel="error"/>

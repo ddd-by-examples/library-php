@@ -12,13 +12,13 @@
     "require": {
         "myclabs/php-enum": "^1.7",
         "ramsey/uuid": "^3.8",
-        "munusphp/munus": "dev-master#8e4c32ec9aec13f34ee82484b8b936f241b7cfd6"
+        "munusphp/munus": "^0.2"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
         "phpunit/phpunit": "^8.4",
         "vimeo/psalm": "^3.6",
-        "psalm/plugin-phpunit": "^0.7.0"
+        "psalm/plugin-phpunit": "^0.10"
     },
     "autoload": {
         "psr-4": {
