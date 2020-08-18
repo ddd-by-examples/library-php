@@ -9,6 +9,8 @@ use MyCLabs\Enum\Enum;
 /**
  * @method static BookType restricted()
  * @method static BookType circulating()
+ *
+ * @psalm-immutable
  */
 final class BookType extends Enum
 {

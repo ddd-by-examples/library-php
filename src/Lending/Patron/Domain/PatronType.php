@@ -9,6 +9,8 @@ use MyCLabs\Enum\Enum;
 /**
  * @method static PatronType regular()
  * @method static PatronType researcher()
+ *
+ * @psalm-immutable
  */
 final class PatronType extends Enum
 {

@@ -26,6 +26,9 @@ final class Patron
      */
     private $placingOnHoldPolicies;
 
+    /**
+     * @param GenericList<PlacingOnHoldPolicy> $placingOnHoldPolicies
+     */
     public function __construct(PatronInformation $patron, GenericList $placingOnHoldPolicies)
     {
         $this->patron = $patron;

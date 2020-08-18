@@ -14,6 +14,9 @@ use Munus\Control\Either\Right;
 
 final class OnlyResearcherPatronsCanPlaceOpenEndedHolds implements PlacingOnHoldPolicy
 {
+    /**
+     * @return Either<Rejection,Allowance>
+     */
     public function __invoke(AvailableBook $toHold, Patron $patron, HoldDuration $holdDuration): Either
     {
         if ($patron->isRegular() && $holdDuration->isOpenEnded()) {
