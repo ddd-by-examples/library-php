@@ -6,10 +6,7 @@ namespace Akondas\Library\Common\Aggregate;
 
 final class Version
 {
-    /**
-     * @var int
-     */
-    private $version;
+    private int $version;
 
     public function __construct(int $version)
     {

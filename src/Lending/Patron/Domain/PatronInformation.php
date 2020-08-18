@@ -6,15 +6,8 @@ namespace Akondas\Library\Lending\Patron\Domain;
 
 final class PatronInformation
 {
-    /**
-     * @var PatronId
-     */
-    private $patronId;
-
-    /**
-     * @var PatronType
-     */
-    private $patronType;
+    private PatronId $patronId;
+    private PatronType $patronType;
 
     public function __construct(PatronId $patronId, PatronType $patronType)
     {

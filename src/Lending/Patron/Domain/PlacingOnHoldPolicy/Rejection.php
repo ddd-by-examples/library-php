@@ -6,10 +6,7 @@ namespace Akondas\Library\Lending\Patron\Domain\PlacingOnHoldPolicy;
 
 final class Rejection
 {
-    /**
-     * @var string
-     */
-    private $reason;
+    private string $reason;
 
     public function __construct(string $reason)
     {

@@ -8,10 +8,7 @@ use Akondas\Library\Common\UUID;
 
 final class BookId
 {
-    /**
-     * @var UUID
-     */
-    private $bookId;
+    private UUID $bookId;
 
     public function __construct(UUID $bookId)
     {

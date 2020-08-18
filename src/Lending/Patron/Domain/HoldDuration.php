@@ -8,15 +8,8 @@ use Munus\Control\Option;
 
 final class HoldDuration
 {
-    /**
-     * @var \DateTimeImmutable
-     */
-    private $from;
-
-    /**
-     * @var \DateTimeImmutable|null
-     */
-    private $to;
+    private \DateTimeImmutable $from;
+    private ?\DateTimeImmutable $to;
 
     private function __construct(\DateTimeImmutable $from, ?\DateTimeImmutable $to)
     {

@@ -16,15 +16,12 @@ use Munus\Control\Option;
 
 final class Patron
 {
-    /**
-     * @var PatronInformation
-     */
-    private $patron;
+    private PatronInformation $patron;
 
     /**
      * @var GenericList<PlacingOnHoldPolicy>
      */
-    private $placingOnHoldPolicies;
+    private GenericList $placingOnHoldPolicies;
 
     /**
      * @param GenericList<PlacingOnHoldPolicy> $placingOnHoldPolicies

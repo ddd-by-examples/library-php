@@ -13,45 +13,14 @@ use Akondas\Library\Lending\Patron\Domain\PatronId;
 
 final class BookHoldFailed implements PatronEvent
 {
-    /**
-     * @var UUID
-     */
-    private $eventId;
-
-    /**
-     * @var PatronId
-     */
-    private $patronId;
-
-    /**
-     * @var string
-     */
-    private $reason;
-
-    /**
-     * @var BookId
-     */
-    private $bookId;
-
-    /**
-     * @var LibraryBranchId
-     */
-    private $libraryBranchId;
-
-    /**
-     * @var \DateTimeImmutable
-     */
-    private $when;
-
-    /**
-     * @var \DateTimeImmutable
-     */
-    private $holdFrom;
-
-    /**
-     * @var \DateTimeImmutable|null
-     */
-    private $holdTill;
+    private UUID $eventId;
+    private PatronId $patronId;
+    private string $reason;
+    private BookId $bookId;
+    private LibraryBranchId $libraryBranchId;
+    private \DateTimeImmutable $when;
+    private \DateTimeImmutable $holdFrom;
+    private ?\DateTimeImmutable $holdTill;
 
     public function __construct(UUID $eventId, PatronId $patronId, string $reason, BookId $bookId, LibraryBranchId $libraryBranchId, \DateTimeImmutable $when, \DateTimeImmutable $holdFrom, ?\DateTimeImmutable $holdTill)
     {
