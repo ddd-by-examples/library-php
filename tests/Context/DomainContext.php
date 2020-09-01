@@ -14,9 +14,9 @@ use Munus\Control\Either;
 final class DomainContext implements Context
 {
     /**
-     * @var Either<BookHoldFailed,BookPlacedOnHold>her
+     * @var ?Either<BookHoldFailed,BookPlacedOnHold>
      */
-    private $hold;
+    private ?Either $hold = null;
 
     /**
      * @When a regular patron place on hold restricted book on :days days
@@ -29,8 +29,24 @@ final class DomainContext implements Context
     /**
      * @Then place on hold should fail with reason :reason
      */
-    public function placeOnHoldShouldFailWithReason(string $reason)
+    public function placeOnHoldShouldFailWithReason(string $reason): void
     {
-        \assertTrue($this->hold->isLeft());
+        \assertTrue($this->hold && $this->hold->getLeft()->reason() === $reason);
+    }
+
+    /**
+     * @When a researcher patron with :holds holds place on hold circulating book
+     */
+    public function aResearcherPatronWithHoldsPlaceOnHoldCirculatingBook(int $holds): void
+    {
+        $this->hold = researcherPatronWithHolds($holds)->placeOnHold(circulatingBook(), HoldDuration::openEnded());
+    }
+
+    /**
+     * @Then place on hold should succeed
+     */
+    public function placeOnHoldShouldSucceed(): void
+    {
+        \assertTrue($this->hold && $this->hold->isRight());
     }
 }

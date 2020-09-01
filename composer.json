@@ -43,10 +43,14 @@
         "fix-cs": [
             "php-cs-fixer fix"
         ],
+        "behat": [
+            "behat"
+        ],
         "tests": [
             "@check-cs",
             "psalm",
-            "phpunit"
+            "phpunit",
+            "@behat"
         ]
     }
 
