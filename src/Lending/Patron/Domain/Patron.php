@@ -23,13 +23,16 @@ final class Patron
      */
     private GenericList $placingOnHoldPolicies;
 
+    private PatronHolds $patronHolds;
+
     /**
      * @param GenericList<PlacingOnHoldPolicy> $placingOnHoldPolicies
      */
-    public function __construct(PatronInformation $patron, GenericList $placingOnHoldPolicies)
+    public function __construct(PatronInformation $patron, GenericList $placingOnHoldPolicies, PatronHolds $patronHolds)
     {
         $this->patron = $patron;
         $this->placingOnHoldPolicies = $placingOnHoldPolicies;
+        $this->patronHolds = $patronHolds;
     }
 
     public function isRegular(): bool
@@ -48,6 +51,11 @@ final class Patron
         }
 
         return new Left(BookHoldFailed::now($this->patron->patronId(), $rejection->get()->reason(), $aBook->bookId(), $aBook->libraryBranch(), $holdDuration));
+    }
+
+    public function numberOfHolds(): int
+    {
+        return $this->patronHolds->count();
     }
 
     /**
