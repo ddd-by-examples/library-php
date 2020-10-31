@@ -20,7 +20,7 @@ class Title
         $this->title = $title;
     }
 
-    public function getTitle(): string
+    public function title(): string
     {
         return $this->title;
     }

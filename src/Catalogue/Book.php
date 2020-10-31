@@ -35,12 +35,12 @@ class Book
         return $this->isbn;
     }
 
-    public function getTitle(): Title
+    public function title(): Title
     {
         return $this->title;
     }
 
-    public function getAuthor(): Author
+    public function author(): Author
     {
         return $this->author;
     }

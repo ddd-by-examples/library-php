@@ -20,7 +20,7 @@ class Author
         $this->author = $author;
     }
 
-    public function getAuthor(): string
+    public function author(): string
     {
         return $this->author;
     }
