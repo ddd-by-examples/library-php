@@ -9,7 +9,6 @@ use Akondas\Library\Lending\Patron\Domain\NumberOfDays;
 use Akondas\Library\Lending\Patron\Domain\PatronEvent\BookHoldFailed;
 use Akondas\Library\Lending\Patron\Domain\PatronEvent\BookPlacedOnHold;
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
 use Munus\Control\Either;
 
 final class DomainContext implements Context
