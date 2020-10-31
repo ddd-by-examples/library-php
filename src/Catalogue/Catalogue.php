@@ -19,11 +19,17 @@ class Catalogue
         $this->eventPublisher = $eventPublisher;
     }
 
+    /**
+     * @return Option<Book>
+     */
     public function getBook(string $isbn): Option
     {
         return $this->database->findByIsbn(new ISBN($isbn));
     }
 
+    /**
+     * @return TryTo<string>
+     */
     public function addBook(string $isbn, string $title, string $author): TryTo
     {
         return TryTo::run(function () use ($isbn, $title, $author) {
@@ -34,6 +40,9 @@ class Catalogue
         });
     }
 
+    /**
+     * @return TryTo<string>
+     */
     public function addBookInstance(string $isbn, BookType $bookType): TryTo
     {
         return TryTo::run(function () use ($isbn, $bookType) {
