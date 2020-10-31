@@ -13,7 +13,9 @@
         "php": ">=7.4",
         "myclabs/php-enum": "^1.7",
         "ramsey/uuid": "^3.8",
-        "munusphp/munus": "^0.2"
+        "munusphp/munus": "^0.2",
+        "fale/isbn": "^3.1",
+        "webmozart/assert": "^1.9"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",

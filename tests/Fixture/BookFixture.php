@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+use Akondas\Library\Catalogue\Book;
 use Akondas\Library\Catalogue\BookId;
 use Akondas\Library\Catalogue\BookType;
+use Akondas\Library\Catalogue\ISBN;
 use Akondas\Library\Common\Aggregate\Version;
 use Akondas\Library\Common\UUID;
 use Akondas\Library\Lending\Book\Domain\AvailableBook;
@@ -27,4 +29,16 @@ function anyBookId(): BookId
 function anyBranch(): LibraryBranchId
 {
     return new LibraryBranchId(UUID::random());
+}
+
+define('DDD_ISBN_STR', (string) 9780321125217);
+
+function dddISBN(): ISBN
+{
+    return new ISBN(DDD_ISBN_STR);
+}
+
+function dddBook(): Book
+{
+    return Book::of(DDD_ISBN_STR, 'Domain Driven Design', 'Eric Evans');
 }

@@ -3,4 +3,7 @@
   <file src="tests/Fixture/PatronFixture.php">
     <InvalidArgument occurrences="2"/>
   </file>
+  <file src="src/Catalogue/Catalogue.php">
+    <InvalidArgument occurrences="2"/>
+  </file>
 </files>
