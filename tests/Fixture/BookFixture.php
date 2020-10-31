@@ -33,11 +33,6 @@ function anyBranch(): LibraryBranchId
 
 define('DDD_ISBN_STR', (string) 9780321125217);
 
-function dddISBN(): ISBN
-{
-    return new ISBN(DDD_ISBN_STR);
-}
-
 function dddBook(): Book
 {
     return Book::of(DDD_ISBN_STR, 'Domain Driven Design', 'Eric Evans');
