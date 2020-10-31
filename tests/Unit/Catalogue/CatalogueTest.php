@@ -46,7 +46,7 @@ class CatalogueTest extends TestCase
         self::assertEquals(dddBook(), $book->get());
     }
 
-    public function testPutAndGetBookToCatalogue(): void
+    public function testPutBookToCatalogue(): void
     {
         // when
         $result = $this->catalogue->addBook(DDD_ISBN_STR, 'Domain Driven Design', 'Eric Evans');
