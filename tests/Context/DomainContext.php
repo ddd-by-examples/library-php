@@ -9,6 +9,7 @@ use Akondas\Library\Lending\Patron\Domain\NumberOfDays;
 use Akondas\Library\Lending\Patron\Domain\PatronEvent\BookHoldFailed;
 use Akondas\Library\Lending\Patron\Domain\PatronEvent\BookPlacedOnHold;
 use Behat\Behat\Context\Context;
+use Behat\Behat\Tester\Exception\PendingException;
 use Munus\Control\Either;
 
 final class DomainContext implements Context
@@ -24,6 +25,14 @@ final class DomainContext implements Context
     public function aRegularPatronPlaceOnHoldRestrictedBookOnDays(int $days): void
     {
         $this->hold = regularPatron()->placeOnHold(restrictedBook(), HoldDuration::closeEnded(NumberOfDays::of($days)));
+    }
+
+    /**
+     * @When a regular patron with :holds holds place on hold circulating book on :days days
+     */
+    public function aRegularPatronWithHoldsPlaceOnHold(int $holds, int $days): void
+    {
+        $this->hold = regularPatronWithHolds($holds)->placeOnHold(circulatingBook(), HoldDuration::closeEnded(NumberOfDays::of($days)));
     }
 
     /**

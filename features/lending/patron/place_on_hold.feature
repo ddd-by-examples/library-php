@@ -1,6 +1,10 @@
 Feature: Place book on hold
   In order to read a book Patrons should be able to place book on hold
 
+  Scenario: A regular patron cannot place on hold more than 5 books
+    When a regular patron with 5 holds place on hold circulating book on 7 days
+    Then place on hold should fail with reason "Regular patron cannot hold more books"
+
   Scenario: A regular patron cannot place on hold restricted book
     When a regular patron place on hold restricted book on 7 days
     Then place on hold should fail with reason "Regular patrons cannot hold restricted books"
