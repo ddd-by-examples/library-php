@@ -10,6 +10,7 @@ use Akondas\Library\Catalogue\Catalogue;
 use Akondas\Library\Catalogue\CatalogueDatabase;
 use Akondas\Library\Catalogue\ISBN;
 use Akondas\Library\Common\Event\DomainEventPublisher;
+use Akondas\Library\Common\Result\Result;
 use Exception;
 use Munus\Control\Option;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -52,7 +53,7 @@ class CatalogueTest extends TestCase
         $result = $this->catalogue->addBook(DDD_ISBN_STR, 'Domain Driven Design', 'Eric Evans');
         // then
         self::assertTrue($result->isSuccess());
-        self::assertEquals('Book added', $result->get());
+        self::assertEquals(Result::SUCCESS(), $result->get());
     }
 
     public function testPutNewBookInstanceToCatalogue(): void
@@ -68,7 +69,7 @@ class CatalogueTest extends TestCase
         $result = $this->catalogue->addBookInstance(DDD_ISBN_STR, BookType::restricted());
         // then
         self::assertTrue($result->isSuccess());
-        self::assertEquals('Book instance added', $result->get());
+        self::assertEquals(Result::SUCCESS(), $result->get());
     }
 
     public function testItFailsOnAddingBookWhenDatabaseFails(): void

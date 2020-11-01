@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Akondas\Library\Catalogue\Book;
 use Akondas\Library\Catalogue\BookId;
 use Akondas\Library\Catalogue\BookType;
-use Akondas\Library\Catalogue\ISBN;
 use Akondas\Library\Common\Aggregate\Version;
 use Akondas\Library\Common\UUID;
 use Akondas\Library\Lending\Book\Domain\AvailableBook;
