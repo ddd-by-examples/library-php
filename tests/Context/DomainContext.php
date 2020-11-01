@@ -27,6 +27,14 @@ final class DomainContext implements Context
     }
 
     /**
+     * @When a regular patron with :holds holds place on hold circulating book on :days days
+     */
+    public function aRegularPatronWithHoldsPlaceOnHold(int $holds, int $days): void
+    {
+        $this->hold = regularPatronWithHolds($holds)->placeOnHold(circulatingBook(), HoldDuration::closeEnded(NumberOfDays::of($days)));
+    }
+
+    /**
      * @Then place on hold should fail with reason :reason
      */
     public function placeOnHoldShouldFailWithReason(string $reason): void
