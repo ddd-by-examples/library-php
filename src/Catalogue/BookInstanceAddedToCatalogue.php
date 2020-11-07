@@ -19,7 +19,7 @@ class BookInstanceAddedToCatalogue implements DomainEvent
     private UUID $bookId;
 
     private DateTimeImmutable $when;
-    
+
     private function __construct(UUID $eventId, string $isbn, BookType $bookType, UUID $bookId, DateTimeImmutable $when)
     {
         $this->eventId = $eventId;

@@ -14,9 +14,6 @@ class BookInstance
 
     private BookType $bookType;
 
-    /**
-     * BookInstance constructor.
-     */
     private function __construct(ISBN $isbn, BookId $bookId, BookType $bookType)
     {
         $this->isbn = $isbn;

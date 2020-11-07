@@ -12,9 +12,6 @@ class Book
 
     private Author $author;
 
-    /**
-     * Book constructor.
-     */
     private function __construct(ISBN $isbn, Title $title, Author $author)
     {
         $this->isbn = $isbn;
