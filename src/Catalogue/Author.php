@@ -12,7 +12,7 @@ class Author
 
     public function __construct(string $author)
     {
-        if ($author !== '') {
+        if ($author === '') {
             throw new InvalidArgumentException('Author cannot be empty');
         }
 

@@ -12,7 +12,7 @@ class Title
 
     public function __construct(string $title)
     {
-        if ($title !== '') {
+        if ($title === '') {
             throw new InvalidArgumentException('Title cannot be empty');
         }
 
