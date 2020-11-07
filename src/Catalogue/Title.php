@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Akondas\Library\Catalogue;
 
+use InvalidArgumentException;
 use Webmozart\Assert\Assert;
 
 class Title
@@ -15,7 +16,9 @@ class Title
      */
     public function __construct(string $title)
     {
-        Assert::stringNotEmpty($title, 'Title cannot be empty');
+        if ($title !== '') {
+            throw new InvalidArgumentException('Title cannot be empty');
+        }
 
         $this->title = $title;
     }
