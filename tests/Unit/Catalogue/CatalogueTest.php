@@ -29,7 +29,7 @@ class CatalogueTest extends TestCase
 
     private Catalogue $catalogue;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->database = self::createMock(CatalogueDatabase::class);
