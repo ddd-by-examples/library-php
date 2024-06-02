@@ -11,7 +11,6 @@ use Akondas\Library\Catalogue\CatalogueDatabase;
 use Akondas\Library\Catalogue\ISBN;
 use Akondas\Library\Common\Event\DomainEventPublisher;
 use Akondas\Library\Common\Result\Result;
-use Exception;
 use Munus\Control\Option;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -119,7 +118,7 @@ class CatalogueTest extends TestCase
      */
     private function databaseFails(): void
     {
-        $this->database->method('saveBook')->willThrowException(new Exception());
-        $this->database->method('saveBookInstance')->willThrowException(new Exception());
+        $this->database->method('saveBook')->willThrowException(new \Exception());
+        $this->database->method('saveBookInstance')->willThrowException(new \Exception());
     }
 }

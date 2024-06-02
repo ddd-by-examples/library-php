@@ -53,7 +53,7 @@ function researcherPatronWithHolds(int $numberOfHolds): Patron
     return new Patron(
         new PatronInformation(anyPatronId(), PatronType::researcher()),
         GenericList::of(
-            new PlacingOnHoldPolicy\RegularPatronMaximumNumberOfHoldsPolicy()
+            new RegularPatronMaximumNumberOfHoldsPolicy()
         ),
         booksOnHold($numberOfHolds)
     );

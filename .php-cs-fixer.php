@@ -5,32 +5,39 @@ $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__.'/tests')
 ;
 
-return PhpCsFixer\Config::create()
+$config = new PhpCsFixer\Config();
+
+return $config
     ->setRiskyAllowed(true)
     ->setRules([
         '@PHP71Migration' => true,
         '@Symfony' => true,
         'array_syntax' => ['syntax' => 'short'],
         'no_superfluous_elseif' => true,
-        'no_superfluous_phpdoc_tags' => true,
+        'no_superfluous_phpdoc_tags' => ['allow_mixed' => true],
         'no_unreachable_default_argument_value' => true,
         'no_useless_else' => true,
         'no_useless_return' => true,
         'no_unused_imports' => true,
         'declare_strict_types' => true,
         'ordered_imports' => [
-            'importsOrder' => null,
-            'sortAlgorithm' => 'alpha',
+            'imports_order' => null,
+            'sort_algorithm' => 'alpha',
         ],
         'phpdoc_order' => true,
         'phpdoc_align' => true,
         'phpdoc_no_access' => true,
         'phpdoc_separation' => true,
-        'pre_increment' => true,
         'single_quote' => true,
         'trim_array_spaces' => true,
+        'blank_lines_before_namespace' => false,
         'single_blank_line_before_namespace' => true,
-        'yoda_style' => null,
+        'yoda_style' => [
+            'equal' => null,
+            'identical' => null,
+            'less_and_greater' => null,
+            'always_move_variable' => false,
+        ],
         // risky -->
         'strict_param' => true,
     ])

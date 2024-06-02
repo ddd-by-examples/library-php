@@ -21,9 +21,6 @@ class BookInstance
         $this->bookType = $bookType;
     }
 
-    /**
-     * @return BookInstance
-     */
     public static function of(Book $book, BookType $bookType): self
     {
         return new self($book->bookIsbn(), new BookId(UUID::random()), $bookType);

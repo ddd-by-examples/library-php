@@ -19,9 +19,6 @@ class Book
         $this->author = $author;
     }
 
-    /**
-     * @return Book
-     */
     public static function of(string $isbn, string $title, string $author): self
     {
         return new self(new ISBN($isbn), new Title($title), new Author($author));

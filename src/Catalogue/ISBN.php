@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Akondas\Library\Catalogue;
 
-use InvalidArgumentException;
 use Isbn\Isbn as IsbnCode;
 
 class ISBN
@@ -14,7 +13,7 @@ class ISBN
     public function __construct(string $isbn)
     {
         if (!(new IsbnCode())->validation->isbn($isbn)) {
-            throw new InvalidArgumentException('Invalid ISBN');
+            throw new \InvalidArgumentException('Invalid ISBN');
         }
 
         $this->isbn = $isbn;

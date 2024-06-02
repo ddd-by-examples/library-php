@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid as RamseyUuid;
 
 final class UUID
 {
-    private string  $value;
+    private string $value;
 
     public function __construct(string $value)
     {
