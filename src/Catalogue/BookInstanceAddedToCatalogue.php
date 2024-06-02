@@ -6,7 +6,6 @@ namespace Akondas\Library\Catalogue;
 
 use Akondas\Library\Common\Event\DomainEvent;
 use Akondas\Library\Common\UUID;
-use DateTimeImmutable;
 
 class BookInstanceAddedToCatalogue implements DomainEvent
 {
@@ -18,9 +17,9 @@ class BookInstanceAddedToCatalogue implements DomainEvent
 
     private UUID $bookId;
 
-    private DateTimeImmutable $when;
+    private \DateTimeImmutable $when;
 
-    private function __construct(UUID $eventId, string $isbn, BookType $bookType, UUID $bookId, DateTimeImmutable $when)
+    private function __construct(UUID $eventId, string $isbn, BookType $bookType, UUID $bookId, \DateTimeImmutable $when)
     {
         $this->eventId = $eventId;
         $this->isbn = $isbn;
@@ -36,7 +35,7 @@ class BookInstanceAddedToCatalogue implements DomainEvent
             $bookInstance->bookIsbn()->isbn(),
             $bookInstance->bookType(),
             $bookInstance->bookId()->bookId(),
-            new DateTimeImmutable()
+            new \DateTimeImmutable()
         );
     }
 
@@ -50,7 +49,7 @@ class BookInstanceAddedToCatalogue implements DomainEvent
         return $this->bookId;
     }
 
-    public function when(): DateTimeImmutable
+    public function when(): \DateTimeImmutable
     {
         return $this->when;
     }

@@ -11,6 +11,8 @@ use Akondas\Library\Lending\Patron\Domain\PatronEvent\BookPlacedOnHold;
 use Behat\Behat\Context\Context;
 use Munus\Control\Either;
 
+use function PHPUnit\Framework\assertTrue;
+
 final class DomainContext implements Context
 {
     /**
@@ -39,7 +41,7 @@ final class DomainContext implements Context
      */
     public function placeOnHoldShouldFailWithReason(string $reason): void
     {
-        \assertTrue($this->hold && $this->hold->getLeft()->reason() === $reason);
+        assertTrue($this->hold && $this->hold->getLeft()->reason() === $reason);
     }
 
     /**
@@ -55,6 +57,6 @@ final class DomainContext implements Context
      */
     public function placeOnHoldShouldSucceed(): void
     {
-        \assertTrue($this->hold && $this->hold->isRight());
+        assertTrue($this->hold && $this->hold->isRight());
     }
 }

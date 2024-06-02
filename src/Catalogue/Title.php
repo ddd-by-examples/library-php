@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Akondas\Library\Catalogue;
 
-use InvalidArgumentException;
-
 class Title
 {
     private string $title;
@@ -13,7 +11,7 @@ class Title
     public function __construct(string $title)
     {
         if ($title === '') {
-            throw new InvalidArgumentException('Title cannot be empty');
+            throw new \InvalidArgumentException('Title cannot be empty');
         }
 
         $this->title = $title;
