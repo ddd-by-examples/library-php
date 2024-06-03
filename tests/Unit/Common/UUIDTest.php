@@ -18,6 +18,7 @@ final class UUIDTest extends TestCase
         new UUID('invalid string');
     }
 
+    #[Test]
     public function it_will_be_able_to_compare(): void
     {
         $uuid = UUID::random();
