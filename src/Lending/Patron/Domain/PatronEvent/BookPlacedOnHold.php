@@ -83,4 +83,14 @@ final class BookPlacedOnHold implements PatronEvent
     {
         return $this->when;
     }
+
+    public function bookType(): BookType
+    {
+        return $this->bookType;
+    }
+
+    public function libraryBranchId(): LibraryBranchId
+    {
+        return $this->libraryBranchId;
+    }
 }

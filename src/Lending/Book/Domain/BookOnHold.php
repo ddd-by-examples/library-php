@@ -61,4 +61,14 @@ final class BookOnHold implements Book
     {
         return $this->version;
     }
+
+    public function byPatron(): PatronId
+    {
+        return $this->byPatron;
+    }
+
+    public function holdTill(): \DateTimeImmutable
+    {
+        return $this->holdTill;
+    }
 }

@@ -87,10 +87,10 @@ function booksOnHold(int $numberOfHolds): PatronHolds
         return noHolds();
     }
 
-    /** @var Set<Hold> $holds */
-    $holds = Stream::range(1, $numberOfHolds)
-        ->map(fn () => new Hold(anyBookId(), anyBranch()))
-        ->collect(Collectors::toSet());
+    /** @var Stream\Collector<Hold, Set<Hold>> $collector */
+    $collector = Collectors::toSet();
 
-    return new PatronHolds($holds);
+    return new PatronHolds(Stream::range(1, $numberOfHolds)
+        ->map(fn (): Hold => new Hold(anyBookId(), anyBranch()))
+        ->collect($collector));
 }

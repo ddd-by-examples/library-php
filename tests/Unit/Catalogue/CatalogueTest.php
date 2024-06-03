@@ -17,14 +17,9 @@ use PHPUnit\Framework\TestCase;
 
 class CatalogueTest extends TestCase
 {
-    /**
-     * @var CatalogueDatabase|MockObject
-     */
-    private $database;
-    /**
-     * @var DomainEventPublisher|MockObject
-     */
-    private $eventPublisher;
+    private CatalogueDatabase&MockObject $database;
+
+    private DomainEventPublisher&MockObject $eventPublisher;
 
     private Catalogue $catalogue;
 

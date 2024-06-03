@@ -17,4 +17,9 @@ final class Version
     {
         return new self(0);
     }
+
+    public function version(): int
+    {
+        return $this->version;
+    }
 }
