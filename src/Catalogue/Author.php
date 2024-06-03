@@ -4,21 +4,12 @@ declare(strict_types=1);
 
 namespace Akondas\Library\Catalogue;
 
-class Author
+final readonly class Author
 {
-    private string $author;
-
-    public function __construct(string $author)
+    public function __construct(public string $author)
     {
         if ($author === '') {
             throw new \InvalidArgumentException('Author cannot be empty');
         }
-
-        $this->author = $author;
-    }
-
-    public function author(): string
-    {
-        return $this->author;
     }
 }

@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  php:
+    tty: true
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      COMPOSER_HOME: "/tmp/.composer"
+    volumes:
+      - ".:/app"
+      - "~/.composer:/tmp/.composer"

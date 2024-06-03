@@ -1,6 +1,6 @@
 # Library (PHP)
 
-[![Minimum PHP Version](https://img.shields.io/badge/php-%5E8.2-8892BF.svg)](https://php.net/)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%5E8.3-8892BF.svg)](https://php.net/)
 [![ci](https://github.com/ddd-by-examples/library-php/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/ddd-by-examples/library-php/actions/workflows/ci.yml)
 ![GitHub](https://img.shields.io/github/license/ddd-by-examples/library-php)
 
@@ -44,6 +44,22 @@ the catalogue.  Book must have non-empty title and price. At the time of adding 
 we decide whether it will be Circulating or Restricted. This enables
 us to have book with same ISBN as circulated and restricted at the same time (for instance,
 there is a book signed by the author that we want to keep as Restricted)
+
+## How to build and run
+
+The code below will boot the project, install all dependencies and run the build script (code style check, static analysis and all tests):
+
+```shell
+make up
+make ci
+```
+
+### Interactive shell
+
+```shell
+make bash
+```
+
 
 ## References
 
