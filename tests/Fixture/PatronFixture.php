@@ -21,7 +21,7 @@ use Munus\Collection\Stream\Collectors;
 function regularPatron(): Patron
 {
     return new Patron(
-        new PatronInformation(anyPatronId(), PatronType::regular()),
+        new PatronInformation(anyPatronId(), PatronType::REGULAR),
         GenericList::of(
             new OnlyResearcherPatronsCanPlaceOpenEndedHolds(),
             new OnlyResearcherPatronsCanHoldRestrictedBooks()
@@ -33,7 +33,7 @@ function regularPatron(): Patron
 function regularPatronWithHolds(int $numberOfHolds): Patron
 {
     return new Patron(
-        new PatronInformation(anyPatronId(), PatronType::regular()),
+        new PatronInformation(anyPatronId(), PatronType::REGULAR),
         GenericList::of(
             new OnlyResearcherPatronsCanPlaceOpenEndedHolds(),
             new OnlyResearcherPatronsCanHoldRestrictedBooks(),
@@ -45,13 +45,13 @@ function regularPatronWithHolds(int $numberOfHolds): Patron
 
 function researcherPatronWithPolicy(PatronId $patronId, PlacingOnHoldPolicy $placingOnHoldPolicy): Patron
 {
-    return patronWithPolicy($patronId, PatronType::researcher(), $placingOnHoldPolicy);
+    return patronWithPolicy($patronId, PatronType::RESEARCHER, $placingOnHoldPolicy);
 }
 
 function researcherPatronWithHolds(int $numberOfHolds): Patron
 {
     return new Patron(
-        new PatronInformation(anyPatronId(), PatronType::researcher()),
+        new PatronInformation(anyPatronId(), PatronType::RESEARCHER),
         GenericList::of(
             new RegularPatronMaximumNumberOfHoldsPolicy()
         ),

@@ -47,7 +47,7 @@ class CatalogueTest extends TestCase
         $result = $this->catalogue->addBook(DDD_ISBN_STR, 'Domain Driven Design', 'Eric Evans');
         // then
         self::assertTrue($result->isSuccess());
-        self::assertEquals(Result::SUCCESS(), $result->get());
+        self::assertSame(Result::SUCCESS, $result->get());
     }
 
     public function testPutNewBookInstanceToCatalogue(): void
@@ -60,10 +60,10 @@ class CatalogueTest extends TestCase
             ->method('publish')
             ->with(self::isInstanceOf(BookInstanceAddedToCatalogue::class));
         // when
-        $result = $this->catalogue->addBookInstance(DDD_ISBN_STR, BookType::restricted());
+        $result = $this->catalogue->addBookInstance(DDD_ISBN_STR, BookType::RESTRICTED);
         // then
         self::assertTrue($result->isSuccess());
-        self::assertEquals(Result::SUCCESS(), $result->get());
+        self::assertSame(Result::SUCCESS, $result->get());
     }
 
     public function testItFailsOnAddingBookWhenDatabaseFails(): void
@@ -85,7 +85,7 @@ class CatalogueTest extends TestCase
             ->expects(self::never())
             ->method('publish');
         // when
-        $result = $this->catalogue->addBookInstance(DDD_ISBN_STR, BookType::restricted());
+        $result = $this->catalogue->addBookInstance(DDD_ISBN_STR, BookType::RESTRICTED);
         // then
         self::assertTrue($result->isFailure());
     }

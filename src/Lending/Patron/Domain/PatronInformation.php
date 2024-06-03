@@ -27,6 +27,6 @@ final class PatronInformation
 
     public function isRegular(): bool
     {
-        return $this->patronType->equals(PatronType::regular());
+        return $this->patronType === PatronType::REGULAR;
     }
 }
