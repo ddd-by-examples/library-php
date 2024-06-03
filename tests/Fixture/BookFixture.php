@@ -12,12 +12,12 @@ use Akondas\Library\Lending\LibraryBranch\Domain\LibraryBranchId;
 
 function restrictedBook(): AvailableBook
 {
-    return new AvailableBook(anyBookId(), BookType::restricted(), anyBranch(), Version::zero());
+    return new AvailableBook(anyBookId(), BookType::RESTRICTED, anyBranch(), Version::zero());
 }
 
 function circulatingBook(): AvailableBook
 {
-    return new AvailableBook(anyBookId(), BookType::circulating(), anyBranch(), Version::zero());
+    return new AvailableBook(anyBookId(), BookType::CIRCULATING, anyBranch(), Version::zero());
 }
 
 function anyBookId(): BookId

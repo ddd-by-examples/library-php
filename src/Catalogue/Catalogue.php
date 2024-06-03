@@ -29,7 +29,7 @@ class Catalogue
     }
 
     /**
-     * @return TryTo<Result>
+     * @return TryTo<covariant Result>
      */
     public function addBook(string $isbn, string $title, string $author): TryTo
     {
@@ -37,12 +37,12 @@ class Catalogue
             $book = Book::of($isbn, $title, $author);
             $this->database->saveBook($book);
 
-            return Result::SUCCESS();
+            return Result::SUCCESS;
         });
     }
 
     /**
-     * @return TryTo<Result>
+     * @return TryTo<covariant Result>
      */
     public function addBookInstance(string $isbn, BookType $bookType): TryTo
     {
@@ -51,8 +51,8 @@ class Catalogue
                 ->findByIsbn(new ISBN($isbn))
                 ->map(fn (Book $book): BookInstance => BookInstance::of($book, $bookType))
                 ->map(fn (BookInstance $bookInstance): BookInstance => $this->saveAndPublishEvent($bookInstance))
-                ->map(fn (BookInstance $bookInstance): Result => Result::SUCCESS())
-                ->getOrElse(Result::REJECTION());
+                ->map(fn (BookInstance $bookInstance): Result => Result::SUCCESS)
+                ->getOrElse(Result::REJECTION); // @phpstan-ignore-line
         });
     }
 

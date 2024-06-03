@@ -46,6 +46,6 @@ final class AvailableBook implements Book
 
     public function isRestricted(): bool
     {
-        return $this->bookType->equals(BookType::restricted());
+        return $this->bookType === BookType::RESTRICTED;
     }
 }
