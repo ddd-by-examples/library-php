@@ -4,22 +4,14 @@ declare(strict_types=1);
 
 namespace Akondas\Library\Common\Aggregate;
 
-final class Version
+final readonly class Version
 {
-    private int $version;
-
-    public function __construct(int $version)
+    public function __construct(public int $version)
     {
-        $this->version = $version;
     }
 
     public static function zero(): self
     {
         return new self(0);
-    }
-
-    public function version(): int
-    {
-        return $this->version;
     }
 }
