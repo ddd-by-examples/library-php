@@ -14,7 +14,7 @@
         "fale/isbn": "^3.1",
         "munusphp/munus": "^0.15",
         "myclabs/php-enum": "^1.7",
-        "ramsey/uuid": "^4.7"
+        "symfony/uid": "^7.1"
     },
     "require-dev": {
         "behat/behat": "^3.5",
