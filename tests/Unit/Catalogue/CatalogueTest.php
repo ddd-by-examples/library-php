@@ -50,10 +50,6 @@ class CatalogueTest extends TestCase
         self::assertEquals(Result::SUCCESS(), $result->get());
     }
 
-    /**
-     * @psalm-suppress MixedMethodCall
-     * @psalm-suppress PossiblyUndefinedMethod
-     */
     public function testPutNewBookInstanceToCatalogue(): void
     {
         // given
@@ -80,10 +76,6 @@ class CatalogueTest extends TestCase
         self::assertTrue($result->isFailure());
     }
 
-    /**
-     * @psalm-suppress MixedMethodCall
-     * @psalm-suppress PossiblyUndefinedMethod
-     */
     public function testItFailsOnAddingBookInstanceWhenDatabaseFails(): void
     {
         // given
@@ -98,19 +90,11 @@ class CatalogueTest extends TestCase
         self::assertTrue($result->isFailure());
     }
 
-    /**
-     * @psalm-suppress MixedMethodCall
-     * @psalm-suppress PossiblyUndefinedMethod
-     */
     private function thereIsBookWith(string $isbn): void
     {
         $this->database->method('findByIsbn')->with(new ISBN($isbn))->willReturn(Option::of(dddBook()));
     }
 
-    /**
-     * @psalm-suppress MixedMethodCall
-     * @psalm-suppress PossiblyUndefinedMethod
-     */
     private function databaseFails(): void
     {
         $this->database->method('saveBook')->willThrowException(new \Exception());
