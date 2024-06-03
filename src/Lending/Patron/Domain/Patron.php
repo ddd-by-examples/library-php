@@ -10,8 +10,6 @@ use Akondas\Library\Lending\Patron\Domain\PatronEvent\BookPlacedOnHold;
 use Akondas\Library\Lending\Patron\Domain\PlacingOnHoldPolicy\Rejection;
 use Munus\Collection\GenericList;
 use Munus\Control\Either;
-use Munus\Control\Either\Left;
-use Munus\Control\Either\Right;
 use Munus\Control\Option;
 
 final class Patron
@@ -19,14 +17,14 @@ final class Patron
     private PatronInformation $patron;
 
     /**
-     * @var GenericList<PlacingOnHoldPolicy>
+     * @var GenericList<covariant PlacingOnHoldPolicy>
      */
     private GenericList $placingOnHoldPolicies;
 
     private PatronHolds $patronHolds;
 
     /**
-     * @param GenericList<PlacingOnHoldPolicy> $placingOnHoldPolicies
+     * @param GenericList<covariant PlacingOnHoldPolicy> $placingOnHoldPolicies
      */
     public function __construct(PatronInformation $patron, GenericList $placingOnHoldPolicies, PatronHolds $patronHolds)
     {
@@ -47,10 +45,10 @@ final class Patron
     {
         $rejection = $this->patronCanHold($aBook, $holdDuration);
         if ($rejection->isEmpty()) {
-            return new Right(BookPlacedOnHold::now($this->patron->patronId(), $aBook->bookId(), $aBook->bookType(), $aBook->libraryBranch(), $holdDuration));
+            return Either::right(BookPlacedOnHold::now($this->patron->patronId(), $aBook->bookId(), $aBook->bookType(), $aBook->libraryBranch(), $holdDuration));
         }
 
-        return new Left(BookHoldFailed::now($this->patron->patronId(), $rejection->get()->reason(), $aBook->bookId(), $aBook->libraryBranch(), $holdDuration));
+        return Either::left(BookHoldFailed::now($this->patron->patronId(), $rejection->get()->reason(), $aBook->bookId(), $aBook->libraryBranch(), $holdDuration));
     }
 
     public function numberOfHolds(): int

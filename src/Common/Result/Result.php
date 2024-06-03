@@ -7,6 +7,8 @@ namespace Akondas\Library\Common\Result;
 use MyCLabs\Enum\Enum;
 
 /**
+ * @extends Enum<string>
+ *
  * @psalm-immutable
  *
  * @method static Result SUCCESS()

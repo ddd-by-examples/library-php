@@ -72,4 +72,24 @@ final class BookHoldFailed implements PatronEvent
     {
         return $this->reason;
     }
+
+    public function bookId(): BookId
+    {
+        return $this->bookId;
+    }
+
+    public function libraryBranchId(): LibraryBranchId
+    {
+        return $this->libraryBranchId;
+    }
+
+    public function holdFrom(): \DateTimeImmutable
+    {
+        return $this->holdFrom;
+    }
+
+    public function holdTill(): ?\DateTimeImmutable
+    {
+        return $this->holdTill;
+    }
 }

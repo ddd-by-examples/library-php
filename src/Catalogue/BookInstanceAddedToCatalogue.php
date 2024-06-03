@@ -49,6 +49,21 @@ class BookInstanceAddedToCatalogue implements DomainEvent
         return $this->bookId;
     }
 
+    public function isbn(): string
+    {
+        return $this->isbn;
+    }
+
+    public function bookType(): BookType
+    {
+        return $this->bookType;
+    }
+
+    public function bookId(): UUID
+    {
+        return $this->bookId;
+    }
+
     public function when(): \DateTimeImmutable
     {
         return $this->when;

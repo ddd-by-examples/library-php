@@ -9,8 +9,6 @@ use Akondas\Library\Lending\Patron\Domain\HoldDuration;
 use Akondas\Library\Lending\Patron\Domain\Patron;
 use Akondas\Library\Lending\Patron\Domain\PlacingOnHoldPolicy;
 use Munus\Control\Either;
-use Munus\Control\Either\Left;
-use Munus\Control\Either\Right;
 
 final class OnlyResearcherPatronsCanHoldRestrictedBooks implements PlacingOnHoldPolicy
 {
@@ -20,9 +18,9 @@ final class OnlyResearcherPatronsCanHoldRestrictedBooks implements PlacingOnHold
     public function __invoke(AvailableBook $toHold, Patron $patron, HoldDuration $holdDuration): Either
     {
         if ($toHold->isRestricted() && $patron->isRegular()) {
-            return new Left(new Rejection('Regular patrons cannot hold restricted books'));
+            return Either::left(new Rejection('Regular patrons cannot hold restricted books'));
         }
 
-        return new Right(new Allowance());
+        return Either::right(new Allowance());
     }
 }

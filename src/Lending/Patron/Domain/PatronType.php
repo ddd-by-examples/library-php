@@ -7,6 +7,8 @@ namespace Akondas\Library\Lending\Patron\Domain;
 use MyCLabs\Enum\Enum;
 
 /**
+ * @extends Enum<string>
+ *
  * @method static PatronType regular()
  * @method static PatronType researcher()
  *
@@ -14,6 +16,6 @@ use MyCLabs\Enum\Enum;
  */
 final class PatronType extends Enum
 {
-    private const regular = 'regular';
-    private const researcher = 'researcher';
+    public const regular = 'regular';
+    public const researcher = 'researcher';
 }

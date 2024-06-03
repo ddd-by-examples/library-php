@@ -7,6 +7,8 @@ namespace Akondas\Library\Catalogue;
 use MyCLabs\Enum\Enum;
 
 /**
+ * @extends Enum<string>
+ *
  * @method static BookType restricted()
  * @method static BookType circulating()
  *
@@ -14,6 +16,6 @@ use MyCLabs\Enum\Enum;
  */
 final class BookType extends Enum
 {
-    private const restricted = 'restricted';
-    private const circulating = 'circulating';
+    public const restricted = 'restricted';
+    public const circulating = 'circulating';
 }

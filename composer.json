@@ -17,9 +17,10 @@
         "ramsey/uuid": "^4.7"
     },
     "require-dev": {
+        "behat/behat": "^3.5",
         "friendsofphp/php-cs-fixer": "^3.58",
-        "phpunit/phpunit": "^9.6",
-        "behat/behat": "^3.5"
+        "phpstan/phpstan": "^1.11",
+        "phpunit/phpunit": "^9.6"
     },
     "autoload": {
         "psr-4": {
@@ -45,10 +46,17 @@
         "behat": [
             "behat"
         ],
+        "phpunit": [
+            "phpunit"
+        ],
+        "phpstan": [
+            "phpstan analyse -c phpstan.neon"
+        ],
         "ci": [
             "composer validate",
             "@check-cs",
-            "phpunit",
+            "@phpstan",
+            "@phpunit",
             "@behat"
         ]
     },
