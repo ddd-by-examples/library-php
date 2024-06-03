@@ -6,17 +6,13 @@ namespace Akondas\Library\Common;
 
 use Symfony\Component\Uid\Uuid as SymfonyUuid;
 
-final class UUID
+final readonly class UUID
 {
-    private string $value;
-
-    public function __construct(string $value)
+    public function __construct(private string $value)
     {
         if (!SymfonyUuid::isValid($value)) {
             throw new \InvalidArgumentException('Invalid UUID format');
         }
-
-        $this->value = $value;
     }
 
     public static function random(): self
