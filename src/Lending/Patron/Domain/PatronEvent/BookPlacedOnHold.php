@@ -14,25 +14,16 @@ use Akondas\Library\Lending\Patron\Domain\PatronId;
 
 final class BookPlacedOnHold implements PatronEvent
 {
-    private UUID $eventId;
-    private PatronId $patronId;
-    private BookId $bookId;
-    private BookType $bookType;
-    private LibraryBranchId $libraryBranchId;
-    private \DateTimeImmutable $holdFrom;
-    private ?\DateTimeImmutable $holdTill;
-    private \DateTimeImmutable $when;
-
-    private function __construct(UUID $eventId, PatronId $patronId, BookId $bookId, BookType $bookType, LibraryBranchId $libraryBranchId, \DateTimeImmutable $when, \DateTimeImmutable $holdFrom, ?\DateTimeImmutable $holdTill)
+    private function __construct(
+        public UUID $eventId,
+        public PatronId $patronId,
+        public BookId $bookId,
+        public BookType $bookType,
+        public LibraryBranchId $libraryBranchId,
+        public \DateTimeImmutable $when,
+        public \DateTimeImmutable $holdFrom,
+        public ?\DateTimeImmutable $holdTill)
     {
-        $this->eventId = $eventId;
-        $this->patronId = $patronId;
-        $this->bookId = $bookId;
-        $this->bookType = $bookType;
-        $this->libraryBranchId = $libraryBranchId;
-        $this->when = $when;
-        $this->holdFrom = $holdFrom;
-        $this->holdTill = $holdTill;
     }
 
     public static function now(PatronId $patronId, BookId $bookId, BookType $bookType, LibraryBranchId $libraryBranchId, HoldDuration $holdDuration): self
@@ -44,24 +35,9 @@ final class BookPlacedOnHold implements PatronEvent
             $bookType,
             $libraryBranchId,
             new \DateTimeImmutable(),
-            $holdDuration->from(),
-            $holdDuration->to()->getOrNull()
+            $holdDuration->from,
+            $holdDuration->to
         );
-    }
-
-    public function bookId(): BookId
-    {
-        return $this->bookId;
-    }
-
-    public function holdFrom(): \DateTimeImmutable
-    {
-        return $this->holdFrom;
-    }
-
-    public function holdTill(): ?\DateTimeImmutable
-    {
-        return $this->holdTill;
     }
 
     public function patronId(): PatronId
@@ -76,21 +52,11 @@ final class BookPlacedOnHold implements PatronEvent
 
     public function aggregateId(): UUID
     {
-        return $this->patronId->patronId();
+        return $this->patronId->patronId;
     }
 
     public function when(): \DateTimeImmutable
     {
         return $this->when;
-    }
-
-    public function bookType(): BookType
-    {
-        return $this->bookType;
-    }
-
-    public function libraryBranchId(): LibraryBranchId
-    {
-        return $this->libraryBranchId;
     }
 }

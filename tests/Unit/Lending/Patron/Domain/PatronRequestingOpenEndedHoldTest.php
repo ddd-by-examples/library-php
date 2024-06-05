@@ -24,8 +24,8 @@ final class PatronRequestingOpenEndedHoldTest extends TestCase
         $event = $hold->get();
         self::assertInstanceOf(BookPlacedOnHold::class, $event);
         self::assertEquals($patronId, $event->patronId());
-        self::assertEquals($aBook->bookId(), $event->bookId());
-        self::assertNull($event->holdTill());
+        self::assertEquals($aBook->bookId(), $event->bookId);
+        self::assertNull($event->holdTill);
     }
 
     public function testRegularPatronCannotRequestOpenEndedHold(): void
@@ -36,7 +36,7 @@ final class PatronRequestingOpenEndedHoldTest extends TestCase
         self::assertTrue($hold->isLeft());
         self::assertStringContainsString(
             'Regular patron cannot place open ended holds',
-            $hold->getLeft()->reason()
+            $hold->getLeft()->reason
         );
     }
 }

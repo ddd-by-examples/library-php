@@ -30,7 +30,7 @@ function anyBranch(): LibraryBranchId
     return new LibraryBranchId(UUID::random());
 }
 
-define('DDD_ISBN_STR', (string) 9780321125217);
+const DDD_ISBN_STR = '9780321125217';
 
 function dddBook(): Book
 {

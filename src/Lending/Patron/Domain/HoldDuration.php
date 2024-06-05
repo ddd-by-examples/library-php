@@ -4,20 +4,13 @@ declare(strict_types=1);
 
 namespace Akondas\Library\Lending\Patron\Domain;
 
-use Munus\Control\Option;
-
-final class HoldDuration
+final readonly class HoldDuration
 {
-    private \DateTimeImmutable $from;
-    private ?\DateTimeImmutable $to;
-
-    private function __construct(\DateTimeImmutable $from, ?\DateTimeImmutable $to)
+    private function __construct(public \DateTimeImmutable $from, public ?\DateTimeImmutable $to)
     {
         if ($to !== null && $to < $from) {
             throw new \InvalidArgumentException('Close-ended duration must be valid');
         }
-        $this->from = $from;
-        $this->to = $to;
     }
 
     public static function openEnded(): self
@@ -29,20 +22,7 @@ final class HoldDuration
     {
         $now = new \DateTimeImmutable();
 
-        return new self($now, $now->modify(sprintf('+%s days', $days->days())));
-    }
-
-    public function from(): \DateTimeImmutable
-    {
-        return $this->from;
-    }
-
-    /**
-     * @return Option<\DateTimeImmutable>
-     */
-    public function to(): Option
-    {
-        return Option::of($this->to);
+        return new self($now, $now->modify(sprintf('+%s days', $days->days)));
     }
 
     public function isOpenEnded(): bool

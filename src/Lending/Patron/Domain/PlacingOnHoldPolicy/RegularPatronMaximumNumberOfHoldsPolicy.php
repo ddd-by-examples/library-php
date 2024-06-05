@@ -13,7 +13,7 @@ use Munus\Control\Either;
 use Munus\Control\Either\Left;
 use Munus\Control\Either\Right;
 
-class RegularPatronMaximumNumberOfHoldsPolicy implements PlacingOnHoldPolicy
+final readonly class RegularPatronMaximumNumberOfHoldsPolicy implements PlacingOnHoldPolicy
 {
     public function __invoke(AvailableBook $toHold, Patron $patron, HoldDuration $holdDuration): Either
     {

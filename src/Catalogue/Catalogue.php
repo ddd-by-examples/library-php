@@ -9,15 +9,10 @@ use Akondas\Library\Common\Result\Result;
 use Munus\Control\Option;
 use Munus\Control\TryTo;
 
-class Catalogue
+final readonly class Catalogue
 {
-    private CatalogueDatabase $database;
-    private DomainEventPublisher $eventPublisher;
-
-    public function __construct(CatalogueDatabase $database, DomainEventPublisher $eventPublisher)
+    public function __construct(private CatalogueDatabase $database, private DomainEventPublisher $eventPublisher)
     {
-        $this->database = $database;
-        $this->eventPublisher = $eventPublisher;
     }
 
     /**

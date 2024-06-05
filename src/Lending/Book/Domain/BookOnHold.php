@@ -10,41 +10,21 @@ use Akondas\Library\Common\Aggregate\Version;
 use Akondas\Library\Lending\LibraryBranch\Domain\LibraryBranchId;
 use Akondas\Library\Lending\Patron\Domain\PatronId;
 
-final class BookOnHold implements Book
+final readonly class BookOnHold implements Book
 {
-    private BookId $bookId;
-
-    private BookType $bookType;
-
-    private LibraryBranchId $libraryBranch;
-
-    private PatronId $byPatron;
-
-    private \DateTimeImmutable $holdTill;
-
-    private Version $version;
-
-    /**
-     * BookOnHold constructor.
-     */
-    public function __construct(BookId $bookId, BookType $bookType, LibraryBranchId $libraryBranch, PatronId $byPatron, \DateTimeImmutable $holdTill, Version $version)
+    public function __construct(
+        public BookId $bookId,
+        public BookType $bookType,
+        public LibraryBranchId $libraryBranch,
+        public PatronId $byPatron,
+        public \DateTimeImmutable $holdTill,
+        public Version $version)
     {
-        $this->bookId = $bookId;
-        $this->bookType = $bookType;
-        $this->libraryBranch = $libraryBranch;
-        $this->byPatron = $byPatron;
-        $this->holdTill = $holdTill;
-        $this->version = $version;
     }
 
     public function by(PatronId $patronId): bool
     {
-        return $this->byPatron->patronId()->isEqual($patronId->patronId());
-    }
-
-    public function libraryBranch(): LibraryBranchId
-    {
-        return $this->libraryBranch;
+        return $this->byPatron->patronId->isEqual($patronId->patronId);
     }
 
     public function bookId(): BookId
@@ -60,15 +40,5 @@ final class BookOnHold implements Book
     public function version(): Version
     {
         return $this->version;
-    }
-
-    public function byPatron(): PatronId
-    {
-        return $this->byPatron;
-    }
-
-    public function holdTill(): \DateTimeImmutable
-    {
-        return $this->holdTill;
     }
 }

@@ -18,7 +18,7 @@ final class RegularPatronRequestingRestrictedBooksTest extends TestCase
         self::assertTrue($hold->isLeft());
         self::assertStringContainsString(
             'Regular patrons cannot hold restricted books',
-            $hold->getLeft()->reason()
+            $hold->getLeft()->reason
         );
     }
 }

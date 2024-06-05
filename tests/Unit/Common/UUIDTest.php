@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Akondas\Library\Tests\Unit\Common;
 
 use Akondas\Library\Common\UUID;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(UUID::class)]
 final class UUIDTest extends TestCase
 {
     #[Test]

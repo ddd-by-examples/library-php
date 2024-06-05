@@ -6,21 +6,12 @@ namespace Akondas\Library\Catalogue;
 
 use Isbn\Isbn as IsbnCode;
 
-class ISBN
+final readonly class ISBN
 {
-    private string $isbn;
-
-    public function __construct(string $isbn)
+    public function __construct(public string $isbn)
     {
         if (!(new IsbnCode())->validation->isbn($isbn)) {
             throw new \InvalidArgumentException('Invalid ISBN');
         }
-
-        $this->isbn = $isbn;
-    }
-
-    public function isbn(): string
-    {
-        return $this->isbn;
     }
 }

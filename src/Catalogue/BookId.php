@@ -6,17 +6,14 @@ namespace Akondas\Library\Catalogue;
 
 use Akondas\Library\Common\UUID;
 
-final class BookId
+final readonly class BookId
 {
-    private UUID $bookId;
-
-    public function __construct(UUID $bookId)
+    public function __construct(public UUID $bookId)
     {
-        $this->bookId = $bookId;
     }
 
-    public function bookId(): UUID
+    public static function random(): self
     {
-        return $this->bookId;
+        return new self(UUID::random());
     }
 }
