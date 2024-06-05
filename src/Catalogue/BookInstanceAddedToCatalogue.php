@@ -7,34 +7,24 @@ namespace Akondas\Library\Catalogue;
 use Akondas\Library\Common\Event\DomainEvent;
 use Akondas\Library\Common\UUID;
 
-class BookInstanceAddedToCatalogue implements DomainEvent
+final readonly class BookInstanceAddedToCatalogue implements DomainEvent
 {
-    private UUID $eventId;
-
-    private string $isbn;
-
-    private BookType $bookType;
-
-    private UUID $bookId;
-
-    private \DateTimeImmutable $when;
-
-    private function __construct(UUID $eventId, string $isbn, BookType $bookType, UUID $bookId, \DateTimeImmutable $when)
-    {
-        $this->eventId = $eventId;
-        $this->isbn = $isbn;
-        $this->bookType = $bookType;
-        $this->bookId = $bookId;
-        $this->when = $when;
+    private function __construct(
+        public UUID $eventId,
+        public string $isbn,
+        public BookType $bookType,
+        public UUID $bookId,
+        public \DateTimeImmutable $when
+    ) {
     }
 
     public static function now(BookInstance $bookInstance): self
     {
         return new self(
             UUID::random(),
-            $bookInstance->bookIsbn()->isbn(),
-            $bookInstance->bookType(),
-            $bookInstance->bookId()->bookId(),
+            $bookInstance->isbn->isbn,
+            $bookInstance->bookType,
+            $bookInstance->bookId->bookId,
             new \DateTimeImmutable()
         );
     }
@@ -45,21 +35,6 @@ class BookInstanceAddedToCatalogue implements DomainEvent
     }
 
     public function aggregateId(): UUID
-    {
-        return $this->bookId;
-    }
-
-    public function isbn(): string
-    {
-        return $this->isbn;
-    }
-
-    public function bookType(): BookType
-    {
-        return $this->bookType;
-    }
-
-    public function bookId(): UUID
     {
         return $this->bookId;
     }

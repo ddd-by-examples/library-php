@@ -4,17 +4,9 @@ declare(strict_types=1);
 
 namespace Akondas\Library\Lending\Patron\Domain\PlacingOnHoldPolicy;
 
-final class Rejection
+final readonly class Rejection
 {
-    private string $reason;
-
-    public function __construct(string $reason)
+    public function __construct(public string $reason)
     {
-        $this->reason = $reason;
-    }
-
-    public function reason(): string
-    {
-        return $this->reason;
     }
 }

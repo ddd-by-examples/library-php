@@ -12,7 +12,7 @@ use Munus\Control\Either;
 use Munus\Control\Either\Left;
 use Munus\Control\Either\Right;
 
-final class OnlyResearcherPatronsCanPlaceOpenEndedHolds implements PlacingOnHoldPolicy
+final readonly class OnlyResearcherPatronsCanPlaceOpenEndedHolds implements PlacingOnHoldPolicy
 {
     /**
      * @return Either<Rejection,Allowance>

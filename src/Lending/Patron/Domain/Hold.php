@@ -7,24 +7,9 @@ namespace Akondas\Library\Lending\Patron\Domain;
 use Akondas\Library\Catalogue\BookId;
 use Akondas\Library\Lending\LibraryBranch\Domain\LibraryBranchId;
 
-class Hold
+final readonly class Hold
 {
-    private BookId $bookId;
-    private LibraryBranchId $libraryBranchId;
-
-    public function __construct(BookId $bookId, LibraryBranchId $libraryBranchId)
+    public function __construct(public BookId $bookId, public LibraryBranchId $libraryBranchId)
     {
-        $this->bookId = $bookId;
-        $this->libraryBranchId = $libraryBranchId;
-    }
-
-    public function bookId(): BookId
-    {
-        return $this->bookId;
-    }
-
-    public function libraryBranchId(): LibraryBranchId
-    {
-        return $this->libraryBranchId;
     }
 }

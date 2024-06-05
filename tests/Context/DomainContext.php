@@ -41,7 +41,7 @@ final class DomainContext implements Context
      */
     public function placeOnHoldShouldFailWithReason(string $reason): void
     {
-        assertTrue($this->hold && $this->hold->getLeft()->reason() === $reason);
+        assertTrue($this->hold && $this->hold->getLeft()->reason === $reason);
     }
 
     /**

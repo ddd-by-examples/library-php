@@ -12,25 +12,13 @@ use Munus\Collection\GenericList;
 use Munus\Control\Either;
 use Munus\Control\Option;
 
-final class Patron
+final readonly class Patron
 {
-    private PatronInformation $patron;
-
-    /**
-     * @var GenericList<covariant PlacingOnHoldPolicy>
-     */
-    private GenericList $placingOnHoldPolicies;
-
-    private PatronHolds $patronHolds;
-
     /**
      * @param GenericList<covariant PlacingOnHoldPolicy> $placingOnHoldPolicies
      */
-    public function __construct(PatronInformation $patron, GenericList $placingOnHoldPolicies, PatronHolds $patronHolds)
+    public function __construct(public PatronInformation $patron, public GenericList $placingOnHoldPolicies, public PatronHolds $patronHolds)
     {
-        $this->patron = $patron;
-        $this->placingOnHoldPolicies = $placingOnHoldPolicies;
-        $this->patronHolds = $patronHolds;
     }
 
     public function isRegular(): bool
@@ -45,10 +33,10 @@ final class Patron
     {
         $rejection = $this->patronCanHold($aBook, $holdDuration);
         if ($rejection->isEmpty()) {
-            return Either::right(BookPlacedOnHold::now($this->patron->patronId(), $aBook->bookId(), $aBook->bookType(), $aBook->libraryBranch(), $holdDuration));
+            return Either::right(BookPlacedOnHold::now($this->patron->patronId, $aBook->bookId(), $aBook->bookType(), $aBook->libraryBranch, $holdDuration));
         }
 
-        return Either::left(BookHoldFailed::now($this->patron->patronId(), $rejection->get()->reason(), $aBook->bookId(), $aBook->libraryBranch(), $holdDuration));
+        return Either::left(BookHoldFailed::now($this->patron->patronId, $rejection->get()->reason, $aBook->bookId(), $aBook->libraryBranch, $holdDuration));
     }
 
     public function numberOfHolds(): int

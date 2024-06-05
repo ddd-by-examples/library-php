@@ -10,7 +10,7 @@ use Akondas\Library\Lending\Patron\Domain\Patron;
 use Akondas\Library\Lending\Patron\Domain\PlacingOnHoldPolicy;
 use Munus\Control\Either;
 
-final class OnlyResearcherPatronsCanHoldRestrictedBooks implements PlacingOnHoldPolicy
+final readonly class OnlyResearcherPatronsCanHoldRestrictedBooks implements PlacingOnHoldPolicy
 {
     /**
      * @return Either<Rejection,Allowance>

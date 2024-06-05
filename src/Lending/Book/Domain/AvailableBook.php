@@ -9,19 +9,14 @@ use Akondas\Library\Catalogue\BookType;
 use Akondas\Library\Common\Aggregate\Version;
 use Akondas\Library\Lending\LibraryBranch\Domain\LibraryBranchId;
 
-final class AvailableBook implements Book
+final readonly class AvailableBook implements Book
 {
-    private BookId $bookId;
-    private BookType $bookType;
-    private LibraryBranchId $libraryBranch;
-    private Version $version;
-
-    public function __construct(BookId $bookId, BookType $bookType, LibraryBranchId $libraryBranch, Version $version)
+    public function __construct(
+        public BookId $bookId,
+        public BookType $bookType,
+        public LibraryBranchId $libraryBranch,
+        public Version $version)
     {
-        $this->bookId = $bookId;
-        $this->bookType = $bookType;
-        $this->libraryBranch = $libraryBranch;
-        $this->version = $version;
     }
 
     public function bookId(): BookId
@@ -37,11 +32,6 @@ final class AvailableBook implements Book
     public function version(): Version
     {
         return $this->version;
-    }
-
-    public function libraryBranch(): LibraryBranchId
-    {
-        return $this->libraryBranch;
     }
 
     public function isRestricted(): bool

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Akondas\Library\Tests\Unit\Catalogue;
 
+use Akondas\Library\Catalogue\BookInstance;
 use Akondas\Library\Catalogue\BookInstanceAddedToCatalogue;
 use Akondas\Library\Catalogue\BookType;
 use Akondas\Library\Catalogue\Catalogue;
@@ -43,6 +44,8 @@ class CatalogueTest extends TestCase
 
     public function testPutBookToCatalogue(): void
     {
+        // given
+        $this->database->method('saveBook')->willReturn(dddBook());
         // when
         $result = $this->catalogue->addBook(DDD_ISBN_STR, 'Domain Driven Design', 'Eric Evans');
         // then
@@ -59,6 +62,7 @@ class CatalogueTest extends TestCase
             ->expects(self::once())
             ->method('publish')
             ->with(self::isInstanceOf(BookInstanceAddedToCatalogue::class));
+        $this->database->method('saveBookInstance')->willReturn(BookInstance::of(dddBook(), BookType::RESTRICTED));
         // when
         $result = $this->catalogue->addBookInstance(DDD_ISBN_STR, BookType::RESTRICTED);
         // then
