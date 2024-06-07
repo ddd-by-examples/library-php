@@ -13,9 +13,12 @@ use Akondas\Library\Catalogue\ISBN;
 use Akondas\Library\Common\Event\DomainEventPublisher;
 use Akondas\Library\Common\Result\Result;
 use Munus\Control\Option;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Catalogue::class)]
 class CatalogueTest extends TestCase
 {
     private CatalogueDatabase&MockObject $database;
@@ -32,7 +35,8 @@ class CatalogueTest extends TestCase
         $this->catalogue = new Catalogue($this->database, $this->eventPublisher);
     }
 
-    public function testGetBookFromCatalogue(): void
+    #[Test]
+    public function get_book_from_the_catalogue(): void
     {
         // given
         $this->thereIsBookWith(DDD_ISBN_STR);
@@ -42,7 +46,8 @@ class CatalogueTest extends TestCase
         self::assertEquals(dddBook(), $book->get());
     }
 
-    public function testPutBookToCatalogue(): void
+    #[Test]
+    public function put_book_to_catalogue(): void
     {
         // given
         $this->database->method('saveBook')->willReturn(dddBook());
@@ -53,7 +58,8 @@ class CatalogueTest extends TestCase
         self::assertSame(Result::SUCCESS, $result->get());
     }
 
-    public function testPutNewBookInstanceToCatalogue(): void
+    #[Test]
+    public function put_new_book_instance_to_catalogue(): void
     {
         // given
         $this->thereIsBookWith(DDD_ISBN_STR);
@@ -70,7 +76,8 @@ class CatalogueTest extends TestCase
         self::assertSame(Result::SUCCESS, $result->get());
     }
 
-    public function testItFailsOnAddingBookWhenDatabaseFails(): void
+    #[Test]
+    public function it_fails_on_adding_book_when_database_fails(): void
     {
         // given
         $this->databaseFails();
@@ -80,7 +87,8 @@ class CatalogueTest extends TestCase
         self::assertTrue($result->isFailure());
     }
 
-    public function testItFailsOnAddingBookInstanceWhenDatabaseFails(): void
+    #[Test]
+    public function it_fails_on_adding_book_instance_when_database_fails(): void
     {
         // given
         $this->databaseFails();
