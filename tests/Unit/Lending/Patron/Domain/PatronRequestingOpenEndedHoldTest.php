@@ -7,11 +7,13 @@ namespace Akondas\Library\Tests\Unit\Lending\Patron\Domain;
 use Akondas\Library\Lending\Patron\Domain\HoldDuration;
 use Akondas\Library\Lending\Patron\Domain\PatronEvent\BookPlacedOnHold;
 use Akondas\Library\Lending\Patron\Domain\PlacingOnHoldPolicy\OnlyResearcherPatronsCanPlaceOpenEndedHolds;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class PatronRequestingOpenEndedHoldTest extends TestCase
 {
-    public function testResearcherPatronCanRequestCloseEndedHold(): void
+    #[Test]
+    public function researcher_patron_can_request_close_ended_hold(): void
     {
         // given
         $aBook = circulatingBook();
@@ -28,7 +30,8 @@ final class PatronRequestingOpenEndedHoldTest extends TestCase
         self::assertNull($event->holdTill);
     }
 
-    public function testRegularPatronCannotRequestOpenEndedHold(): void
+    #[Test]
+    public function regular_patron_cannot_request_open_ended_hold(): void
     {
         // when
         $hold = regularPatron()->placeOnHold(circulatingBook(), HoldDuration::openEnded());
