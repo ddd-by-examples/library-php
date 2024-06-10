@@ -12,8 +12,7 @@ use Akondas\Library\Lending\LibraryBranch\Domain\LibraryBranchId;
 final readonly class AvailableBook implements Book
 {
     public function __construct(
-        public BookId $bookId,
-        public BookType $bookType,
+        public BookInformation $bookInformation,
         public LibraryBranchId $libraryBranch,
         public Version $version)
     {
@@ -21,12 +20,12 @@ final readonly class AvailableBook implements Book
 
     public function bookId(): BookId
     {
-        return $this->bookId;
+        return $this->bookInformation->bookId;
     }
 
     public function bookType(): BookType
     {
-        return $this->bookType;
+        return $this->bookInformation->bookType;
     }
 
     public function version(): Version
@@ -36,6 +35,6 @@ final readonly class AvailableBook implements Book
 
     public function isRestricted(): bool
     {
-        return $this->bookType === BookType::RESTRICTED;
+        return $this->bookInformation->bookType === BookType::RESTRICTED;
     }
 }

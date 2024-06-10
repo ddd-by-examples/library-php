@@ -13,8 +13,7 @@ use Akondas\Library\Lending\Patron\Domain\PatronId;
 final readonly class BookOnHold implements Book
 {
     public function __construct(
-        public BookId $bookId,
-        public BookType $bookType,
+        public BookInformation $bookInformation,
         public LibraryBranchId $libraryBranch,
         public PatronId $byPatron,
         public \DateTimeImmutable $holdTill,
@@ -29,12 +28,12 @@ final readonly class BookOnHold implements Book
 
     public function bookId(): BookId
     {
-        return $this->bookId;
+        return $this->bookInformation->bookId;
     }
 
     public function bookType(): BookType
     {
-        return $this->bookType;
+        return $this->bookInformation->bookType;
     }
 
     public function version(): Version
