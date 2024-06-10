@@ -8,11 +8,11 @@ use Akondas\Library\Catalogue\BookId;
 use Akondas\Library\Catalogue\BookType;
 use Akondas\Library\Common\UUID;
 use Akondas\Library\Lending\LibraryBranch\Domain\LibraryBranchId;
-use Akondas\Library\Lending\Patron\Domain\HoldDuration;
+use Akondas\Library\Lending\Patron\Domain\CheckoutDuration;
 use Akondas\Library\Lending\Patron\Domain\PatronEvent;
 use Akondas\Library\Lending\Patron\Domain\PatronId;
 
-final readonly class BookPlacedOnHold implements PatronEvent
+final readonly class BookCheckedOut implements PatronEvent
 {
     private function __construct(
         public UUID $eventId,
@@ -21,12 +21,11 @@ final readonly class BookPlacedOnHold implements PatronEvent
         public BookType $bookType,
         public LibraryBranchId $libraryBranchId,
         public \DateTimeImmutable $when,
-        public \DateTimeImmutable $holdFrom,
-        public ?\DateTimeImmutable $holdTill)
-    {
+        public \DateTimeImmutable $till,
+    ) {
     }
 
-    public static function now(PatronId $patronId, BookId $bookId, BookType $bookType, LibraryBranchId $libraryBranchId, HoldDuration $holdDuration): self
+    public static function now(PatronId $patronId, BookId $bookId, BookType $bookType, LibraryBranchId $libraryBranchId, CheckoutDuration $checkoutDuration): self
     {
         return new self(
             UUID::random(),
@@ -35,8 +34,7 @@ final readonly class BookPlacedOnHold implements PatronEvent
             $bookType,
             $libraryBranchId,
             new \DateTimeImmutable(),
-            $holdDuration->from,
-            $holdDuration->to
+            $checkoutDuration->to()
         );
     }
 
