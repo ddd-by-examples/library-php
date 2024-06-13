@@ -1,5 +1,6 @@
 includes:
 	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
+	- vendor/phpstan/phpstan-symfony/extension.neon
 
 parameters:
 	level: max
@@ -10,6 +11,8 @@ parameters:
 		- public
 		- src
 		- tests
+	symfony:
+		container_xml_path: var/cache/test/Akondas_Library_Common_KernelTestDebugContainer.xml
 	ignoreErrors:
 		-
 			message: "#^Method.*should return Munus\\\\Control\\\\Either.*but returns Munus\\\\Control\\\\Either.*mixed.*.$#"

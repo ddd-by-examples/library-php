@@ -11,4 +11,9 @@ final readonly class PatronId
     public function __construct(public UUID $patronId)
     {
     }
+
+    public static function fromString(string $bookId): self
+    {
+        return new self(new UUID($bookId));
+    }
 }

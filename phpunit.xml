@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.1/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
+         bootstrap="tests/bootstrap.php"
          executionOrder="depends,defects"
          beStrictAboutOutputDuringTests="true"
          colors="true"
          cacheDirectory=".phpunit.cache"
          beStrictAboutCoverageMetadata="true"
 >
-  <testsuites>
-    <testsuite name="default">
-      <directory>tests</directory>
-    </testsuite>
-  </testsuites>
-  <source>
-    <include>
-      <directory>src</directory>
-    </include>
-  </source>
+    <php>
+        <ini name="error_reporting" value="-1"/>
+        <server name="APP_ENV" value="test" force="true"/>
+        <server name="SHELL_VERBOSITY" value="-1"/>
+        <server name="KERNEL_CLASS" value="Akondas\Library\Common\Kernel"/>
+    </php>
+    <testsuites>
+        <testsuite name="default">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
+    <extensions>
+        <bootstrap class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/>
+    </extensions>
 </phpunit>

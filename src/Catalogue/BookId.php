@@ -12,6 +12,11 @@ final readonly class BookId
     {
     }
 
+    public static function fromString(string $bookId): self
+    {
+        return new self(new UUID($bookId));
+    }
+
     public static function random(): self
     {
         return new self(UUID::random());

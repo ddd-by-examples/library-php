@@ -15,6 +15,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "fale/isbn": "^3.1",
         "munusphp/munus": "^0.16",
+        "symfony/clock": "^7.1",
         "symfony/console": "^7.1",
         "symfony/dotenv": "^7.1",
         "symfony/framework-bundle": "^7.1",
@@ -24,8 +25,10 @@
     },
     "require-dev": {
         "behat/behat": "^3.14",
+        "dama/doctrine-test-bundle": "^8.2",
         "friendsofphp/php-cs-fixer": "^3.58",
         "phpstan/phpstan": "^1.11",
+        "phpstan/phpstan-symfony": "^1.4",
         "phpunit/phpunit": "^11.1"
     },
     "autoload": {
@@ -60,6 +63,7 @@
         "ci": [
             "composer validate",
             "composer audit",
+            "bin/console lint:container",
             "@tests:database:reset",
             "@check-cs",
             "@phpstan",
