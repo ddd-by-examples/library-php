@@ -11,3 +11,22 @@ services:
     volumes:
       - ".:/app"
       - "~/.composer:/tmp/.composer"
+
+  postgres:
+    image: 'postgres:16'
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_USER: "root"
+      POSTGRES_DB: "app"
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      timeout: 10s
+      interval: 1s
+      retries: 15
+
+volumes:
+  db-data:
