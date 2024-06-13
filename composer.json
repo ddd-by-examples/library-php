@@ -11,9 +11,16 @@
     ],
     "require": {
         "php": "^8.3",
+        "doctrine/doctrine-bundle": "^2.12",
+        "doctrine/doctrine-migrations-bundle": "^3.3",
         "fale/isbn": "^3.1",
         "munusphp/munus": "^0.16",
-        "symfony/uid": "^7.1"
+        "symfony/console": "^7.1",
+        "symfony/dotenv": "^7.1",
+        "symfony/framework-bundle": "^7.1",
+        "symfony/runtime": "^7.1",
+        "symfony/uid": "^7.1",
+        "symfony/yaml": "^7.1"
     },
     "require-dev": {
         "behat/behat": "^3.14",
@@ -52,13 +59,26 @@
         ],
         "ci": [
             "composer validate",
+            "composer audit",
+            "@tests:database:reset",
             "@check-cs",
             "@phpstan",
             "@phpunit",
             "@behat"
+        ],
+        "database:reset": [
+            "bin/console d:d:d -f -n --if-exists",
+            "bin/console d:d:c -n",
+            "bin/console d:m:m -n"
+        ],
+        "tests:database:reset": [
+            "APP_ENV=test composer database:reset"
         ]
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "symfony/runtime": true
+        }
     }
 }

@@ -4,6 +4,10 @@ includes:
 parameters:
 	level: max
 	paths:
+		- bin
+		- config
+		- migrations
+		- public
 		- src
 		- tests
 	ignoreErrors:
