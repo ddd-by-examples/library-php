@@ -38,3 +38,5 @@ jobs:
 
     - name: "Run ci script"
       run: "composer ci"
+      env:
+        DATABASE_URL: postgresql://root:password@localhost/app?serverVersion=16&charset=utf8
