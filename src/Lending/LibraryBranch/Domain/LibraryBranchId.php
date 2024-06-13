@@ -11,4 +11,9 @@ final readonly class LibraryBranchId
     public function __construct(public UUID $libraryBranchId)
     {
     }
+
+    public static function fromString(string $bookId): self
+    {
+        return new self(new UUID($bookId));
+    }
 }

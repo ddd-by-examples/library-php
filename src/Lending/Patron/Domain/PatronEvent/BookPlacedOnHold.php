@@ -14,7 +14,7 @@ use Akondas\Library\Lending\Patron\Domain\PatronId;
 
 final readonly class BookPlacedOnHold implements PatronEvent
 {
-    private function __construct(
+    public function __construct(
         public UUID $eventId,
         public PatronId $patronId,
         public BookId $bookId,

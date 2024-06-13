@@ -6,7 +6,7 @@ namespace Akondas\Library\Common;
 
 use Symfony\Component\Uid\Uuid as SymfonyUuid;
 
-final readonly class UUID
+final readonly class UUID implements \Stringable
 {
     public function __construct(private string $value)
     {
